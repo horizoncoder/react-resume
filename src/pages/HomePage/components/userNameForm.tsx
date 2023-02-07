@@ -26,7 +26,11 @@ export const UserNameForm = () => {
     focus:outline-none focus:ring-1 focus:ring-indigo-400" type="text" placeholder="username" onChange={onChangeHandler} />
 
     <div className="flex items-center mt-4">
-    <button className="px-4 py-2 bg-indigo-400 text-white rounded-md" onClick={goToResume}>Submit</button>
+    <button disabled={username.length===0}
+     onClick={goToResume}
+            className={
+                username.length===0 ? 'px-4 py-2 bg-gray-400 text-white rounded-md' : 'px-4 py-2 bg-indigo-400 text-white rounded-md'
+            }>Submit</button>
         </div>
         </div>
         </div>

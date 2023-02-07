@@ -4,7 +4,7 @@ export const HomePageContainer = () => {
 
     return (
 <>
-    {UserNameForm()}
+    <UserNameForm></UserNameForm>
 </>
 
 );

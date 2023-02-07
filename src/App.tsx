@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+import {HomePageContainer} from "./pages/HomePage/HomePageContainer";
+import {ResumePageContainer} from "./pages/ResumePage/ResumePageContainer";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="container mx-auto">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePageContainer/>} />
+                <Route path="resume/:username" element={<ResumePageContainer/>} />
+            </Routes>
+          </BrowserRouter>
+      </div>
   );
 }
 

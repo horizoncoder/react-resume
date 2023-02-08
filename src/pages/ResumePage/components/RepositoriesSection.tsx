@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../../state/store";
 import {getRepositories} from "../../../api/repositoryApi";
 import {useParams} from "react-router-dom";
+import {resetRepositoryState} from "../../../state/repositories/repositorySlice";
 
 export const RepositoriesSection = ()=>{
     const {username} = useParams()
@@ -9,17 +10,18 @@ export const RepositoriesSection = ()=>{
     const dispatch = useAppDispatch()
     useEffect(()=>{
         dispatch(getRepositories(username as string))
+        return ()=>{
+            dispatch(resetRepositoryState())
+        }
     },[])
-    console.log('repos ', repositories.data)
     return <section className="experience pb-2">
         <h2 className="flex items-center mb-3">
-            <i className="em em-computer text-lg mr-2"></i>
             <span className="text-2xl font-semibold">Repositories</span>
         </h2>
         <div>
             {repositories.data.map(repository=>{
                 return(
-                <div className={'bg-zinc-100 mb-5 p-2 rounded-xl'}>
+                <div className={'bg-zinc-100 mb-5 p-2 rounded-xl'} key={repository.name}>
                     <div>
                         <p className={'text-2xl font-medium'}>Name:</p>
                         <a href={repository.url} className={'text-xl font-normal underline text-sky-600'}>{repository.name}</a>

@@ -3,16 +3,15 @@ import {useParams} from "react-router-dom";
 import {getUser} from "../../../api/userApi";
 import {useAppDispatch, useAppSelector} from "../../../state/store";
 import {RepositoriesSection} from "./RepositoriesSection";
+import {LanguagesSection} from "./LanguagesSection";
 export const Resume = () => {
     const {username} = useParams()
     const dispatch = useAppDispatch()
-
 
     const user = useAppSelector((state) => state.user)
     useEffect(()=>{
             dispatch(getUser(username as string))
     },[])
-    console.log(user)
     return (
 
           <div className="bg-indigo-400 min-h-screen p-4 flex justify-center items-center">
@@ -33,6 +32,7 @@ export const Resume = () => {
               </header>
                   <hr className="border-grey-light border-t"></hr>
                   <main className="py-3">
+                      <LanguagesSection />
                       <RepositoriesSection />
                       <section className="bio pb-2">
                           <h2 className="flex items-center">

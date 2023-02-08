@@ -4,13 +4,16 @@ import {getUser} from "../../../api/userApi";
 import {useAppDispatch, useAppSelector} from "../../../state/store";
 import {RepositoriesSection} from "./RepositoriesSection";
 import {LanguagesSection} from "./LanguagesSection";
+import {dateToLocaleDateString} from "../../../utils";
 export const Resume = () => {
     const {username} = useParams()
     const dispatch = useAppDispatch()
 
     const user = useAppSelector((state) => state.user)
     useEffect(()=>{
-            dispatch(getUser(username as string))
+        if(username){
+            dispatch(getUser(username))
+        }
     },[])
     return (
 
@@ -25,7 +28,7 @@ export const Resume = () => {
                       </div>
                       <div>
                           <span className="text-lg font-medium">Created: </span>
-                          <span className="text-3xl font-medium">{new Date(user.data.createdDate).toLocaleDateString()}</span>
+                          <span className="text-3xl font-medium">{dateToLocaleDateString(user.data.createdDate)}</span>
                       </div>
                       <span className="text-xl text-gray-600 font-medium mt-2 md:mt-0">{user.data?.name}</span>
                   </div>

@@ -3,13 +3,16 @@ import {useAppDispatch, useAppSelector} from "../../../state/store";
 import {getRepositories} from "../../../api/repositoryApi";
 import {useParams} from "react-router-dom";
 import {resetRepositoryState} from "../../../state/repositories/repositorySlice";
+import {dateToLocaleDateString} from "../../../utils";
 
 export const RepositoriesSection = ()=>{
     const {username} = useParams()
     const repositories = useAppSelector(state => state.repositories)
     const dispatch = useAppDispatch()
     useEffect(()=>{
-        dispatch(getRepositories(username as string))
+        if(username){
+            dispatch(getRepositories(username))
+        }
         return ()=>{
             dispatch(resetRepositoryState())
         }
@@ -32,7 +35,7 @@ export const RepositoriesSection = ()=>{
                     </div>)}
                     <div>
                         <span className={'text-2xl font-medium'}>Created at: </span>
-                        <span className={'text-xl font-normal'}>{new Date(repository.createdAt).toLocaleDateString()}</span>
+                        <span className={'text-xl font-normal'}>{dateToLocaleDateString(repository.createdAt)}</span>
                     </div>
 
                 </div>

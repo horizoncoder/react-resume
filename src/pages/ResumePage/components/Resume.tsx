@@ -1,18 +1,16 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 import {getUser} from "../../../api/userApi";
-import {useAppDispatch} from "../../../state/store";
-import {useSelector} from "react-redux";
+import {useAppDispatch, useAppSelector} from "../../../state/store";
+import {RepositoriesSection} from "./RepositoriesSection";
 export const Resume = () => {
     const {username} = useParams()
     const dispatch = useAppDispatch()
 
-    // @ts-ignore
-    const user = useSelector((state) => state.user)
+
+    const user = useAppSelector((state) => state.user)
     useEffect(()=>{
-        if (typeof username === "string") {
-            dispatch(getUser(username))
-        }
+            dispatch(getUser(username as string))
     },[])
     console.log(user)
     return (
@@ -20,13 +18,22 @@ export const Resume = () => {
           <div className="bg-indigo-400 min-h-screen p-4 flex justify-center items-center">
               <div className="resume bg-white shadow-lg p-8 md:p-16">
                   <header>
-                  <h1 className="flex flex-col md:flex-row md:justify-between md:items-baseline">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-baseline">
                       <span className="text-3xl font-medium">{username}</span>
-                      <span className="text-xl text-gray-600 font-medium mt-2 md:mt-0"></span>
-                  </h1>
+                      <div>
+                          <span className="text-lg font-medium">Public repos: </span>
+                          <span className="text-3xl font-medium">{user.data.publicRepos}</span>
+                      </div>
+                      <div>
+                          <span className="text-lg font-medium">Created: </span>
+                          <span className="text-3xl font-medium">{new Date(user.data.createdDate).toLocaleDateString()}</span>
+                      </div>
+                      <span className="text-xl text-gray-600 font-medium mt-2 md:mt-0">{user.data?.name}</span>
+                  </div>
               </header>
                   <hr className="border-grey-light border-t"></hr>
                   <main className="py-3">
+                      <RepositoriesSection />
                       <section className="bio pb-2">
                           <h2 className="flex items-center">
                               <i className="em em-wave text-lg mr-2"></i>

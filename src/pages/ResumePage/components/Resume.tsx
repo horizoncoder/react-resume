@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
+import {getUser} from "../../../api/userApi";
+import {useAppDispatch} from "../../../state/store";
+import {useSelector} from "react-redux";
 export const Resume = () => {
     const {username} = useParams()
+    const dispatch = useAppDispatch()
+
+    // @ts-ignore
+    const user = useSelector((state) => state.user)
+    useEffect(()=>{
+        if (typeof username === "string") {
+            dispatch(getUser(username))
+        }
+    },[])
+    console.log(user)
     return (
 
           <div className="bg-indigo-400 min-h-screen p-4 flex justify-center items-center">
@@ -9,7 +22,7 @@ export const Resume = () => {
                   <header>
                   <h1 className="flex flex-col md:flex-row md:justify-between md:items-baseline">
                       <span className="text-3xl font-medium">{username}</span>
-                      <span className="text-xl text-gray-600 font-medium mt-2 md:mt-0">Developer</span>
+                      <span className="text-xl text-gray-600 font-medium mt-2 md:mt-0"></span>
                   </h1>
               </header>
                   <hr className="border-grey-light border-t"></hr>

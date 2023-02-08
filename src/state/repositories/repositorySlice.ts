@@ -15,14 +15,18 @@ const initialState:repositoryState = {status: 'resolved', data:[]}
 const repositoriesSlice =createSlice({
     name: 'repositories',
     initialState,
-    reducers:{},
+    reducers:{
+        resetRepositoryState(state){
+            state.data = []
+        }
+    },
     extraReducers: (builder)=>{
         builder.addCase(getRepositories.pending, state => {
             state.status = 'loading'
         })
         builder.addCase(getRepositories.fulfilled, (state, action)=>{
             state.status = 'resolved'
-            let repoArray = []
+            let repoArray
             if(action.payload.length> 10){
                repoArray = action.payload.slice(0, 10)
             }else{
@@ -33,6 +37,6 @@ const repositoriesSlice =createSlice({
             })
         })
     }
-})//{ name: action.payload.name, description: action.payload.description}
-
+})
+export const {resetRepositoryState} = repositoriesSlice.actions
 export default repositoriesSlice.reducer

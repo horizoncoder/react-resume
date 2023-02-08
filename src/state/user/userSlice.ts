@@ -6,6 +6,7 @@ interface userState {
   status: string;
 }
 interface userData {
+  id: number;
   login: string;
   name: string;
   publicRepos: string;
@@ -23,7 +24,13 @@ const userSlice = createSlice({
     });
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.status = 'resolved';
-      state.data = { login: action.payload.login, name: action.payload.name, publicRepos: action.payload.public_repos, createdDate: action.payload.created_at };
+      state.data = {
+        id: action.payload.id,
+        login: action.payload.login,
+        name: action.payload.name,
+        publicRepos: action.payload.public_repos,
+        createdDate: action.payload.created_at,
+      };
     });
     builder.addCase(getUser.rejected, (state, action) => {
       state.status = 'rejected';

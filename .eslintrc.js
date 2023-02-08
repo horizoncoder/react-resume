@@ -16,6 +16,7 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
 
   rules: {
+
     'eol-last': ['error', 'always'],
     'prettier/prettier': ['error'],
     'react/self-closing-comp': [
@@ -25,7 +26,7 @@ module.exports = {
         html: true,
       },
     ],
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': 0,
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
   },

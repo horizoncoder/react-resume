@@ -1,3 +1,3 @@
-export const dateToLocaleDateString = (date: Date)=>{
-  return new Date(date).toLocaleDateString()
-}
+export const dateToLocaleDateString = (date: Date) => {
+  return new Date(date).toLocaleDateString();
+};

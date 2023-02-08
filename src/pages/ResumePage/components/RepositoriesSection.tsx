@@ -15,24 +15,24 @@ export const RepositoriesSection = ()=>{
         }
     },[])
     return <section className="experience pb-2">
-        <h2 className="flex items-center mb-3">
-            <span className="text-2xl font-semibold">Repositories</span>
+        <h2 className="mb-3 text-2xl font-semibold text-center">
+            Repositories
         </h2>
         <div>
             {repositories.data.map(repository=>{
                 return(
-                <div className={'bg-zinc-100 mb-5 p-2 rounded-xl'} key={repository.name}>
+                <div className={'bg-zinc-100 mb-5 p-2 rounded-xl mx-auto text-center'} key={repository.name}>
                     <div>
-                        <p className={'text-2xl font-medium'}>Name:</p>
+                        <span className={'text-2xl font-medium'}>Name: </span>
                         <a href={repository.url} className={'text-xl font-normal underline text-sky-600'}>{repository.name}</a>
                     </div>
                     {repository.description && (<div>
-                        <p className={'text-2xl font-medium'}>Description</p>
-                        <p className={'text-xl font-normal'}>{repository.description}</p>
+                        <span className={'text-2xl font-medium'}>Description: </span>
+                        <span className={'text-xl font-normal'}>{repository.description}</span>
                     </div>)}
                     <div>
-                        <p className={'text-2xl font-medium'}>Created at:</p>
-                        <p className={'text-xl font-normal'}>{new Date(repository.createdAt).toLocaleDateString()}</p>
+                        <span className={'text-2xl font-medium'}>Created at: </span>
+                        <span className={'text-xl font-normal'}>{new Date(repository.createdAt).toLocaleDateString()}</span>
                     </div>
 
                 </div>

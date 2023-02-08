@@ -15,7 +15,7 @@ export const Resume = () => {
     return (
 
           <div className="bg-indigo-400 min-h-screen p-4 flex justify-center items-center">
-              <div className="resume bg-white shadow-lg p-8 md:p-16">
+              <div className="resume bg-white shadow-lg p-8 md:p-16 w-full">
                   <header>
                   <div className="flex flex-col md:flex-row md:justify-between md:items-baseline">
                       <span className="text-3xl font-medium">{username}</span>
